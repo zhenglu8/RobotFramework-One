@@ -2,7 +2,12 @@
 Documentation    This is some basic info about the whole suite 
 Library          SeleniumLibrary   
 
-# Run the script; robot -d results tests/crm.robot
+# Run the script: robot -d results tests/crm.robot
+# -i smoke will run the tags
+# -v BROWSER:firefox will run the specific browser
+# Run multiple test suites: robot -d results tests
+# Run single test case: robot -d results -t "Test case 1" tests/"product 1"/web/featureOne.robot
+# if the single test case has a tag called CurrentTestCase: robot -d results -i CurrentTestCase tests
 *** Variables ***
 
 *** Test Cases ***
