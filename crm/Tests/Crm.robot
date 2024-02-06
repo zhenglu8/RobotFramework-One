@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    This is some basic info about the whole suite 
-Library          SeleniumLibrary   
+Documentation    This is some basic info about the whole suite  
 
 Resource         ../Resources/Common.robot
 Resource         ../Resources/CrmApp.robot
@@ -20,36 +19,34 @@ ${VALID_LOGIN_EMAIL} =   admin@robotframeworktutorial.com
 ${VALID_LOGIN_PASSWORD} =  qwe
 
 *** Test Cases ***
+Home page should load
+    [Documentation]        Test the home page
+    [Tags]                 1001    Somke    Home
+    
+    CrmApp.Go to "Home" Page
+
+Should be able to login with valid credentials
+    [Documentation]        Test the login
+    [Tags]                 1002    Somke    Login
+    
+    CrmApp.Go to "Home" Page
+    CrmApp.Login With Valid Credentials    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
+
+Should be able to log out
+    [Documentation]        Test the logout
+    [Tags]                 1004    Somke    Login
+    
+    CrmApp.Go to "Home" Page
+    CrmApp.Login With Valid Credentials    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
+    CrmApp.Sign Out
+
 Should be able to add new customer
-    [Documentation]        This is some basic info about the test
+    [Documentation]        Test adding a new customer
     [Tags]                 1006    Somke    Contacts
     
     CrmApp.Go to "Home" Page
-    
-    #LOGIN
     CrmApp.Login With Valid Credentials    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
-    
-    #ADD CUSTOMER
-    click link                  New Customer
-    wait until page contains    Add Customer
+    CrmApp.Add New Customer
+    CrmApp.Sign Out
 
-    input text    id=EmailAddress    janedoe@gmail.com
-    input text    id=FirstName       Jane
-    input text    id=LastName        Doe
-    input text    id=City            Dallas
-    Select From List By Value    id=StateOrRegion    TX
-    Select Radio Button          gender    male
-    Select Checkbox              promos-name    
-    
-    Click Button    Submit
-    wait until page contains    Success! New customer added.
-    
-    #LOG OUT
-    Click Link    Sign Out
-    Wait Until Page Contains    Signed Out
-    
-    #sleep                  3s
-     
-
-*** Keywords ***
 
