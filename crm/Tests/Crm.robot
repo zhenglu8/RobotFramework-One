@@ -25,17 +25,11 @@ Should be able to add new customer
     [Tags]                 1006    Somke    Contacts
     
     CrmApp.Go to "Home" Page
-
-    Click Link             id=SignIn
-    # or name=sign-in-link, id=SignIn, login.html (for href), xpath=, css=
-    wait until page contains    Login
     
-    input text             name=email-name    ${VALID_LOGIN_EMAIL}
-    input text             id=password    ${VALID_LOGIN_PASSWORD}
-    Click Button           Submit    
+    #LOGIN
+    CrmApp.Login With Valid Credentials    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
     
-    wait until page contains    Our Happy Customers
-
+    #ADD CUSTOMER
     click link                  New Customer
     wait until page contains    Add Customer
 
@@ -49,7 +43,8 @@ Should be able to add new customer
     
     Click Button    Submit
     wait until page contains    Success! New customer added.
-
+    
+    #LOG OUT
     Click Link    Sign Out
     Wait Until Page Contains    Signed Out
     
